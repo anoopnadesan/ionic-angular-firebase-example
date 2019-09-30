@@ -6,6 +6,8 @@ run `npm install` to install the project dependencies.
 
 run `ionic serve` to run the project locally.
 
+run `npm run test` to execute unit testing.
+
 ## The API
 The API’s are based on firebase email authentication as well as REST access to the Firebase Realtime database. 
 ### Angular firebase references:
