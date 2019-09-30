@@ -14,6 +14,7 @@
     <ion-list>
       <ion-item class="list-item-header">
         <ion-label>Name</ion-label>
+        <ion-label>Type</ion-label>
         <ion-label>Age</ion-label>
         <ion-label>Overdraft</ion-label>
         <ion-label>Balance($)</ion-label>
@@ -21,9 +22,10 @@
       </ion-item>
       <ion-item *ngFor="let item of items">
         <ion-label>{{item.payload.doc.data().firstName}} {{item.payload.doc.data().lastName}}</ion-label>
-        <ion-label>{{item.payload.doc.data().age}}<i class="icon ion-cash"></i></ion-label>
-        <ion-label>{{item.payload.doc.data().overdraft}}<i class="icon ion-cash"></i></ion-label>
-        <ion-label>{{item.payload.doc.data().balance}}<i class="icon ion-cash"></i></ion-label>
+        <ion-label>{{item.payload.doc.data().accountType}}</ion-label>
+        <ion-label>{{item.payload.doc.data().age}}</ion-label>
+        <ion-label>{{item.payload.doc.data().overdraft}}</ion-label>
+        <ion-label>{{item.payload.doc.data().balance}}</ion-label>
         <ion-label>
           <ion-icon slot="start" name="cash" [routerLink]="['/account-transaction', item.payload.doc.id]"></ion-icon>
         </ion-label>

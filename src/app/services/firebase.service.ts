@@ -86,7 +86,8 @@ export class FirebaseService {
     return new Promise<any>((resolve, reject) => {
       let currentUser = firebase.auth().currentUser;
       this.afs.collection('mmi').doc(currentUser.uid).collection('accounts').add({
-        accountNumer: value.accountNumer,
+        accountNumber: value.accountNumber,
+        accountType: value.accountType,
         firstName: value.firstName,
         lastName: value.lastName,
         age: value.age,

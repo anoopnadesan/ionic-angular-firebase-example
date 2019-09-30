@@ -63,7 +63,8 @@ export class TransactionsPage implements OnInit {
    */
   onSubmit(value) {
     let data = {
-      accountNumer: this.item.accountNumer,
+      accountNumber: this.item.accountNumber,
+      accountType: this.item.accountType,
       firstName: this.item.firstName,
       lastName: this.item.lastName,
       age: this.item.age,

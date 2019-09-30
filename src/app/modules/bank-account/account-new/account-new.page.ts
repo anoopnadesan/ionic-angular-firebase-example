@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseService } from '../../../services/firebase.service';
 import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { ToastController } from '@ionic/angular';
+
+import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
   selector: 'app-account-new',
@@ -14,9 +17,11 @@ export class AccountNewPage implements OnInit {
    * Form group instance object to hold all account transaction form
    */
   form: FormGroup;
+  toast: any;
 
   constructor(
     public router: Router,
+    public toastController: ToastController,
     private formBuilder: FormBuilder,
     private firebaseService: FirebaseService
   ) { }
@@ -35,7 +40,7 @@ export class AccountNewPage implements OnInit {
    */
   resetFields() {
     this.form = this.formBuilder.group({
-      accountNumer: new FormControl('', Validators.required),
+      accountType: new FormControl('', Validators.required),
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       age: new FormControl('', Validators.required),
@@ -54,7 +59,8 @@ export class AccountNewPage implements OnInit {
    */
   onSubmit(value) {
     let data = {
-      accountNumer: value.accountNumer,
+      accountNumber: Math.round(new Date().getTime()/100),
+      accountType: value.accountType,
       firstName: value.firstName,
       lastName: value.lastName,
       age: value.age,
@@ -65,6 +71,7 @@ export class AccountNewPage implements OnInit {
     this.firebaseService.createAccount(data)
       .then(
         res => {
+          this.showToast(data);
           this.resetFields();
           this.router.navigate(["/account-list"]);
         }
@@ -72,11 +79,20 @@ export class AccountNewPage implements OnInit {
   }
 
   /**
-   * To show the loader untill we get account list data api response
+   * Function to show toast message on successful account creation
    * 
    */
-  async itsLoading(loading) {
-    return await loading.present();
+  showToast(data) {
+    this.toast = this.toastController.create({
+      message: data.accountType.toUpperCase() + ' account is created for ' + data.firstName + ' ' + data.lastName + '. Account number is ' + data.accountNumber,
+      duration: 50000,
+      showCloseButton: true,
+      position: 'top',
+      closeButtonText: 'OK',
+      animated:true
+    }).then((toastData)=>{
+      console.log(toastData);
+      toastData.present();
+    });
   }
-
 }

@@ -22,7 +22,8 @@ Open new account should post a new account object to the accounts collection and
 ```
   New account object
   {
-    accountNumer: this.item.accountNumer,
+    accountNumber: this.item.accountNumber,
+    accountType: this.item.accountType,
     firstName: this.item.firstName,
     lastName: this.item.lastName,
     age: this.item.age,

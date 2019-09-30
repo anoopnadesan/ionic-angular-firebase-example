@@ -12,8 +12,11 @@
 <ion-content padding>
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
     <ion-item>
-      <ion-label position="floating" color="primary">Account number</ion-label>
-      <ion-input type="text" formControlName="accountNumer"></ion-input>
+      <ion-label position="floating" color="primary">Account Type</ion-label>
+      <ion-select formControlName="accountType" placeholder="Account Type">
+        <ion-select-option value="savings">Savings</ion-select-option>
+        <ion-select-option value="current">Current</ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
       <ion-label position="floating" color="primary">First Name</ion-label>
