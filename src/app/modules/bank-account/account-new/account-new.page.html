@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Account opening
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+    <ion-item>
+      <ion-label position="floating" color="primary">Account number</ion-label>
+      <ion-input type="text" formControlName="accountNumer"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">First Name</ion-label>
+      <ion-input type="text" formControlName="firstName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Last Name</ion-label>
+      <ion-input type="text" formControlName="lastName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Age</ion-label>
+      <ion-input type="number" min="0" formControlName="age"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Overdraft</ion-label>
+      <ion-input type="number" min="0" formControlName="overdraft"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating" color="primary">Minimum balance</ion-label>
+      <ion-input type="text" formControlName="minBalance"></ion-input>
+    </ion-item>
+    <ion-button class="mt40" expand="block" type="submit" [disabled]="!form.valid">Create</ion-button>
+  </form>
+</ion-content>
